@@ -1,0 +1,1 @@
+{"id":"cpp","ext":"cpp","version":"GNU GCC v4.9.2","compile":"g++ -o main *.cpp","execute":"main","preview":"","command":"","file":"/home/cg/src/samples/main.cpp","url":"compile_cpp_online.php","mode":"c_cpp"}

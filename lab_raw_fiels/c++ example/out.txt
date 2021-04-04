@@ -1,0 +1,1 @@
+Enter real numbers (between 0.0 and 1000.0) separated by a space, when your done write char
