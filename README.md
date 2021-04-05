@@ -4,20 +4,21 @@ Intro to data science is a technion course for dealing and calculate with a big 
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install git.
 
 ```bash
-pip install foobar
+pip install git
+git clone [link]
 ```
 
 ## Usage
 
 ```python
-import foobar
+import csv
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+csv.pluralize('word') # returns 'words'
+csv.pluralize('goose') # returns 'geese'
+csv.singularize('phenomena') # returns 'phenomenon'
 ```
 
 ## Contributing
