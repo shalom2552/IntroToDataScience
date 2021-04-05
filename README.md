@@ -1,6 +1,6 @@
-# Foobar
+# Intro to data science
 
-*Foobar* is a Python library for dealing with word pluralization.
+Intro to data science is a technion course for dealing and calculate with a big data.
 
 ## Installation
 
