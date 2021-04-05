@@ -2,7 +2,7 @@
 
 Intro to data science is a technion course for dealing and calculate with a big data.
 
-### Installation
+##### Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install git.
 
