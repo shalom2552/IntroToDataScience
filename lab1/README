@@ -1,8 +1,12 @@
+The 'try' folder contained the progress.
+the file 'try/script.sh' is the current working script.
+
 Things left to do in lab 1:
 
-1. split into chapters
-2. count the most apearing pair
-3. find most first word apearence
+1. split into chapters !DONE!
+2.1 count the most apearing pair in the book !DONE!
+2.2 count the most apearing pair in each chapter !DONE!
+3. find most first word apearence !DONE!
 4. avg row length
 5. alice avg position in row
  

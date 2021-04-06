@@ -1,6 +1,0 @@
-1. lowercase all file. // awk '{print tolower($0)}' Alice_book !DONE!
-2. replace all characters and signe // sed/awk ??s !DONE!
-3. remove stop words // replace to "" with sed from a black_words file !DONE!
-4. remove empty lines and spaces. // sed !DONE!
-5. split chapters // awk+bash !ON_PROGRESS!
-
