@@ -12,7 +12,7 @@ the file 'try/script.sh' is the current working script.
 ##### 6. alice avg position in row
  
 ## changes
-merged the awk script for the book and for the all book
+merged the awk script for the book and for each chapter.
 
 ## comments
 num of rows shorter then avg as been hard codded into the code as 4.
