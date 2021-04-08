@@ -3,7 +3,7 @@
 Intro to data science is a technion course for dealing and calculate with a big data.
 
 ## content
-Laboratory exercises as well as homework of the course Introduction to Statistics delivered at the Technion
+Homework as well as laboratory exercises of the course intro to data engineering, delivered at the Technion.
 
 ## Installation
 
