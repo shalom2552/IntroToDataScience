@@ -5,8 +5,9 @@ Introduction to Data Engineering is a course taught at the Technion that focuses
 Homework as well as laboratory exercises of the course intro to data engineering, delivered at the Technion.
 
 ## Installation
-[Use this link to install phpstorm from JetBrain ](https://www.jetbrains.com/help/phpstorm/installation-guide.html)
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install git.
+Use [this](https://www.jetbrains.com/help/phpstorm/installation-guide.html) link to install phpstorm from JetBrain
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install putty.
 
 ```bash
 pip install putty-session-manager
