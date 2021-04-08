@@ -64,12 +64,17 @@ awk 'BEGIN{sum=0}{sum+=NF}END{print "Average line length:",sum/NR}' Alice_book_c
 
 # number of lines shorter then the avg
 awk 'BEGIN{sum=0}
-	{if (length($0) <= 4) sum+=1 }
+	{if (NF <= 4) sum+=1}
 	END{print "Number of lines shorter than the average:",sum
 }' Alice_book_clean.txt
 
 # alice avg position in row
-# TODO 
+awk 'BEGIN{pos=0;indicator=0;count=0}
+    {n=1;for(i=1;i<=NF;i++){
+        if($i == "alice"){pos = pos + n;indicator=1}n++;}
+    if(indicator==1){count++; indicator=0};
+    }
+    END{print "Average place of Alice in a line: "pos/count}' Alice_book_clean.txt
 
 # remove all trash leftovers
 rm -rf chapters Alice_book_clean.txt stop_words_lines.txt
