@@ -8,7 +8,7 @@ the file 'try/script.sh' is the current working script.
 ###### 2.2 count the most apearing pair in each chapter !DONE!
 ##### 3. find most first word apearence !DONE!
 ##### 4. avg row length !DONE!
-##### 5. number of lines shorter then avg
+##### 5. number of lines shorter then avg !DONE!
 ##### 6. alice avg position in row
  
 ## changes
