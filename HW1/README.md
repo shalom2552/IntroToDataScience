@@ -1,7 +1,7 @@
 # HW1 - london 
 
-Markup : * Check for Pandas in the virtual machine
-			* chack for pip
+* Check for Pandas in the virtual machine
+* Chack for pip
 
 
 ## Things left to do
@@ -9,7 +9,7 @@ Markup : * Check for Pandas in the virtual machine
 1. question 2
 2. dry exercise
 
-## finaly
+## Finaly
 
-Markup : 1. change back the adrees of the input file
-		 2. run the code in vm to cheack its workability
+1. change back the adrees of the input file
+2. run the code in vm to cheack its workability
