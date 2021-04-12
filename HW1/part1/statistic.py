@@ -1,8 +1,8 @@
 def sum(values):
-	sum=0
+	_sum=0
 	for value in values:
-		sum += float(value)
-	return sum
+		_sum += float(value)
+	return _sum
 
 
 def mean(values):

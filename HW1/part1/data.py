@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 
 
 def load_data(path, features):
@@ -8,12 +8,9 @@ def load_data(path, features):
 	this func read the relevant features and loaded it to the main memory
 	returens the data with relevant colomns
 	"""
-	data_new={}
-	df = pandas.read_csv(path)
+	df = pd.read_csv(path, usecols=features)
 	data = df.to_dict(orient="list")
-	for colomn in features:
-		data_new.append(sorted(df[colomn]))
-	return data_new
+	return data
 
 def filter_by_feature(data, feature, values):
 	"""
@@ -24,12 +21,24 @@ def filter_by_feature(data, feature, values):
 	return‬‬ ‫‪data1,‬‬ ‫‪data2‬‬: returens tow dictioneris so that trheir union will make the all data 
 	and data1 will have all rows so that fetures got some equal value in values, and so for data2
 	"""
-	data.get(feature)
-	for n in range(len(data[0])):
-		if data[fetures][n] in values:
-			dict1.append(data[n])
+	# for elem in (data[feature]):
+	# 	if elem in values:
+	# 		print(elem)
+	dict1={}
+	dict2={}
+	length = len(data[feature])
+	for key in data:
+		dict1[key] =[]
+		dict2[key]=[]
+	for n in range(length):
+		if data[feature][n] in values:
+			for key in data:
+				dict1[key].append(data[key][n])
 		else:
-			dict2.append(data[n])
+			for key in data:
+				dict2[key].append(data[key][n])
+	return dict1, dict2
+
 
 def print_details(data, features, statistic_functions):
 	"""
