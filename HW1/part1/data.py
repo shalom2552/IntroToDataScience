@@ -21,9 +21,6 @@ def filter_by_feature(data, feature, values):
 	return‬‬ ‫‪data1,‬‬ ‫‪data2‬‬: returens tow dictioneris so that trheir union will make the all data 
 	and data1 will have all rows so that fetures got some equal value in values, and so for data2
 	"""
-	# for elem in (data[feature]):
-	# 	if elem in values:
-	# 		print(elem)
 	dict1={}
 	dict2={}
 	length = len(data[feature])
