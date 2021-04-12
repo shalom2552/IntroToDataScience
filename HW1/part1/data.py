@@ -8,14 +8,14 @@ def load_data(path, features):
 	this func read the relevant features and loaded it to the main memory
 	returens the data with relevant colomns
 	"""
-	data_new=[]
+	data_new={}
 	df = pandas.read_csv(path)
 	data = df.to_dict(orient="list")
 	for colomn in features:
-		data_new.append(df[colomn])
+		data_new.append(sorted(df[colomn]))
 	return data_new
 
-def filter_by_feature(data, features, values):
+def filter_by_feature(data, feature, values):
 	"""
 	param data: dictionary keys from data set and values of them
 	param features: name of categorical programs
@@ -24,7 +24,12 @@ def filter_by_feature(data, features, values):
 	return‬‬ ‫‪data1,‬‬ ‫‪data2‬‬: returens tow dictioneris so that trheir union will make the all data 
 	and data1 will have all rows so that fetures got some equal value in values, and so for data2
 	"""
-	pass
+	data.get(feature)
+	for n in range(len(data[0])):
+		if data[fetures][n] in values:
+			dict1.append(data[n])
+		else:
+			dict2.append(data[n])
 
 def print_details(data, features, statistic_functions):
 	"""
