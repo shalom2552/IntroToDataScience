@@ -1,30 +1,26 @@
 import sys
+from statistic import sum,mean,median
+from data import load_data
 
+# argv[0] - path/main.py
+# argv[1] - path/london.csv.py
+# argv[2] - arguments
 def main(argv):
-	print("Hello world")
-	list = [1,2,3,5]
-	print(med(list))
-	print(sum(list))
-	print(average(list))
+	question1()
+	
+	
+def question1():
+	features=['hum','t1','cnt','season','is_holiday']
+	data = load_data("london.csv", features)
+	print("Questin 1:")
+	print("Summer:")	
 
+	for key in ['hum', 't1', 'cnt']:
+		print(data[key])
 
-def sum(list):
-	sum=0
-	for element in list:
-		sum += float(element)
-	return sum
+	print("Holiday:")
 
-
-def average(list):
-	return sum(list)/len(list)
-
-
-def med(list):
-	length = len(list)
-	if (length%2)==0:
-		return (float(list[length//2 - 1])+float(list[(length//2)]))/2
-	else:
-		return list[length/2]
+	print("All:")
 
 
 if __name__ == '__main__':
