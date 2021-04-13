@@ -33,10 +33,10 @@ awk '{
 	}END {
 		for (words in a)
 			if (a[words] > a[m]) m = words
-		print "Most common pair in the book: "m;
+		print "Most common pair in the book:",m;
 		for (words in b)
 			if (b[words] > b[m]) m = words
-		print "Most common first word in the book: ",m
+		print "Most common first word in the book:",m
 	}' Alice_book_clean.txt
 
 # find the most common pair and the Most common first word in each chapter
