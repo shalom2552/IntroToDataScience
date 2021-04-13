@@ -4,7 +4,8 @@ part a and be with dry and wet works
 
 ## Things left to do
 
-iterate over the code and the documentation.
+1. part 1
+2. iterate over the code and the documentation.
 
 ## Status
 
