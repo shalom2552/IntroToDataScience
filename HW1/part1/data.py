@@ -1,5 +1,5 @@
 import pandas as pd
-
+from statistic import sum,mean,median
 
 def load_data(path, features):
 	"""
@@ -43,4 +43,21 @@ def print_details(data, features, statistic_functions):
 	param features: list of features from the data set
 	srtatistic_functions: list of statistic function from 'statistic.py'
 	"""
-	pass
+	results = []
+	for key in features:
+		for op in statistic_functions:
+			if op == "sum":
+				results.append(sum(data[key]))
+			if op == "mean":
+				results.append(mean(data[key]))
+			if op == "median":
+				results.append(median(sorted(data[key])))
+	for key in features:
+		print(key+": ",end='')
+		length = len(results)
+		for n in range(length):
+			print(results[n],end='')
+			if n != length-1:
+				print(", ",end='')
+		print("")
+			

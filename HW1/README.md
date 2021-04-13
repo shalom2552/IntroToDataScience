@@ -1,15 +1,11 @@
-# HW1 - london 
+# HW1
 
-* Check for Pandas in the virtual machine
-* Chack for pip
-
+part a and be with dry and wet works
 
 ## Things left to do
 
-1. question 2
-2. dry exercise
+iterate over the code and the documentation.
 
-## Finaly
+## Status
 
-1. change back the adrees of the input file
-2. run the code in vm to cheack its workability
+all done! ready for testing.

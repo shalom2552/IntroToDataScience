@@ -1,16 +1,17 @@
 import sys
 from statistic import sum,mean,median
-from data import load_data, filter_by_feature
+from data import load_data, filter_by_feature, print_details
 
 # argv[0] - path/main.py
 # argv[1] - path/london.csv.py
 # argv[2] - arguments
 def main(argv):
 	features=['hum','t1','cnt','season','is_holiday']
-	data = load_data("london_sample.csv", features) # sample only!
+	data = load_data("london.csv", features)
 	question1(data)
 	features=['t1','cnt','season','is_holiday']
-	data = load_data("london_sample.csv", features) # sample only!
+	data = load_data("london.csv", features)
+	print("")
 	question2(data)	
 
 
@@ -32,15 +33,24 @@ def question1(data):
 
 def question2(data):
 	# season split
+	print("Question 2:")
 	winter, non_winter = filter_by_feature(data, 'season',[3])
 	Holiday, weekday = filter_by_feature(winter, 'is_holiday', [1])
-	holyday_bigger, holyday_smaller = split_by_value(Holiday,13)
-	weekday_bigger, weekday_smaller = split_by_value(weekday,13)
+	holyday_smaller, holyday_bigger = split_by_value(Holiday,13)
+	weekday_smaller, weekday_bigger = split_by_value(weekday,13)
 
-	print("Questin 2:")
-	#for dict in [holyday_smaller, weekday_smaller, holyday_bigger, weekday_bigger]:
-	print("cnt:"+str(mean(holyday_bigger['cnt']))+", "+str(median(sorted(holyday_bigger['cnt']))))
-
+	features = ['cnt']
+	functions = ['mean','median']
+	print("If t1<=13.0, then:")
+	print("Winter holiday records:")
+	print_details(holyday_smaller,features,functions)
+	print("Winter weekday records:")
+	print_details(weekday_smaller,features,functions)
+	print("If t1>13.0, then:")
+	print("Winter holiday records:")
+	print_details(holyday_bigger,features,functions)
+	print("Winter weekday records:")
+	print_details(weekday_bigger,features,functions)
 
 
 
