@@ -10,5 +10,5 @@ awaiting submition.
 merged the awk script for the book and for each chapter.
 
 ## comments
-num of rows shorter then avg as been hard codded into the code as 4.
+num of rows shorter then avg as been hard codded into the code as 4.<br/>
 output coulde be outputed to file.
