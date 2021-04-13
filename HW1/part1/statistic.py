@@ -11,6 +11,7 @@ def mean(values):
 
 def median(values):
 	length = len(values)
+	sort(values) # added 'sort()' in func instead of 'sort()' in calling
 	if (length%2)==0:
 		return (float(values[(length//2) - 1])+float(values[(length//2)]))/2
 	else:
