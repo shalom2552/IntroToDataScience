@@ -1,6 +1,8 @@
 # Laboratory 1
 Work on Laboratory 1 has been completed.
+
 the file 'try/script.sh' is the current working script.
+
 submition date: 18.4.2021
 
 ## Status
