@@ -45,6 +45,8 @@ awk 'BEGIN{RS="chapter "}{
 	}' Alice_book_clean.txt
 
 # find the most common pair and the Most common first word in book
+rm -f output.txt
+touch output.txt
 awk '{
 	b[$1]++;
 	for (i = 1; i < NF; i++)
@@ -58,7 +60,7 @@ awk '{
 		for (words in b)
 			if (b[words] > b[m]) m = words
 		print "Most common first word in the book:",m
-	}' Alice_book_clean.txt
+	}' Alice_book_clean.txt >> output.txt
 
 # find the most common pair and the Most common first word in each chapter
 cd chapters
@@ -72,22 +74,24 @@ do
 		}END {
 			for (words in a)
 				if (a[words] > a[m]) m = words
-			print "Most common pair for",FILENAME":",m;
+			print "Most common pair in",FILENAME":",m;
 			for (words in b)
 				if (b[words] > b[m]) m = words
-			print "Most common first word for",FILENAME":",m
-		}' "chapter "$n
-done
+			print "Most common first word in",FILENAME":",m
+		}' "chapter "$n >> ../output.txt 
+done 
 cd ..
 
 # avg row length
-awk 'BEGIN{sum=0}{sum+=NF}END{print "Average line length:",sum/NR}' Alice_book_clean.txt
+awk 'BEGIN{sum=0}
+	{sum+=NF}END{print "Average line length:",sum/NR
+}' Alice_book_clean.txt >> output.txt
 
 # number of lines shorter then the avg
 awk 'BEGIN{sum=0}
 	{if (NF <= 4) sum+=1}
 	END{print "Number of lines shorter than the average:",sum
-}' Alice_book_clean.txt
+}' Alice_book_clean.txt >> output.txt
 
 # alice avg position in row
 awk 'BEGIN{pos=0;indicator=0;count=0}
@@ -95,7 +99,9 @@ awk 'BEGIN{pos=0;indicator=0;count=0}
         if($i == "alice"){pos = pos + n;indicator=1}n++;}
     if(indicator==1){count++; indicator=0};
     }
-    END{print "Average place of Alice in a line: "pos/count}' Alice_book_clean.txt
+    END{print "Average place of Alice in a line: "pos/count
+}' Alice_book_clean.txt >> output.txt
 
 # remove all trash leftovers
-rm -rf chapters Alice_book_clean.txt stop_words_lines.txt
+rm -rf chapters Alice_book_clean.txt
+cat output.txt
