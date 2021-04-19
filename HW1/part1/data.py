@@ -1,25 +1,27 @@
 import pandas as pd
 from statistic import sum,mean,median
 
+
 def load_data(path, features):
 	"""
-	param path: full path to the file
-	param features: list of relevant features we interest on
+	@param path: full path to the file
+	@param features: list of relevant features we interest on
 	this func read the relevant features and loaded it to the main memory
-	returens the data with relevant colomns
+	@return data: the data with relevant columns
 	"""
 	df = pd.read_csv(path, usecols=features)
 	data = df.to_dict(orient="list")
 	return data
 
+
 def filter_by_feature(data, feature, values):
 	"""
-	param data: dictionary keys from data set and values of them
-	param features: name of categorical programs
-	param values: set of values so that features can get all of the values in 'values'
+	@param data: dictionary keys from data set and values of them
+	@param feature: name of categorical programs
+	@param values: set of values so that features can get all the values in 'values'
 	this func read the relevant features and loaded it to the main memory
-	return‬‬ ‫‪data1,‬‬ ‫‪data2‬‬: returens tow dictioneris so that trheir union will make the all data 
-	and data1 will have all rows so that fetures got some equal value in values, and so for data2
+	@return data1,data2: returns tow dictionaries so that their union will make the all data
+	and data1 will have all rows so that features got some equal value in values, and so for data2
 	"""
 	dict1={}
 	dict2={}
@@ -39,13 +41,13 @@ def filter_by_feature(data, feature, values):
 
 def print_details(data, features, statistic_functions):
 	"""
-	param data: dictionary keys from data set and values of them
-	param features: list of features from the data set
-	srtatistic_functions: list of statistic function from 'statistic.py'
+	@param data: dictionary keys from data set and values of them
+	@param features: list of features from the data set
+	@param statistic_functions: list of statistic function from 'statistic.py'
 	"""
 	for key in features:
 		results = []
-		print(key+": ",end='')
+		print(key+": ", end='')
 		for op in statistic_functions:
 			if op == "sum":
 				results.append(sum(data[key]))
@@ -55,8 +57,8 @@ def print_details(data, features, statistic_functions):
 				results.append(median(data[key]))
 		length = len(results)
 		for n in range(length):
-			print(results[n],end='')
+			print(results[n], end='')
 			if n != length-1:
-				print(", ",end='')
+				print(", ", end='')
 		print("")
-			
+
