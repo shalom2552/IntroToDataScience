@@ -24,6 +24,6 @@ Most common pair for chapter 11: king said
 Most common first word for chapter 11: court
 Most common pair for chapter 12: king said
 Most common first word for chapter 12: said
-Average line length: 4.51933
-Number of lines shorter than the average: 1108
+Average line length: 4.52152
+Number of lines shorter than the average: 1099
 Average place of Alice in a line: 3.27676
