@@ -1,17 +1,13 @@
 # Laboratory 1
 Work on Laboratory 1 has been completed.<br/>
 the file 'try/script.sh' is the current working script.<br/>
-submition date: 18.4.2021
+submition date: 19.4.2021
 
-## Things need to do
-1. chapter names to be splited with " " insted of _
+## Things to do
 
 ## Status
 awaiting submition.
 submit only script.
- 
-## changes
-merged the awk script for the book and for each chapter.
 
 ## comments
 num of rows shorter then avg as been hard codded into the code as 4.<br/>
