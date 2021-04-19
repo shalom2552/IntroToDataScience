@@ -4,6 +4,7 @@ the file 'try/script.sh' is the current working script.<br/>
 submition date: 19.4.2021
 
 ## Things to do
+change alice bookcall by full path
 
 ## Status
 awaiting submition.

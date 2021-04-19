@@ -43,17 +43,16 @@ def print_details(data, features, statistic_functions):
 	param features: list of features from the data set
 	srtatistic_functions: list of statistic function from 'statistic.py'
 	"""
-	results = []
 	for key in features:
+		results = []
+		print(key+": ",end='')
 		for op in statistic_functions:
 			if op == "sum":
 				results.append(sum(data[key]))
 			if op == "mean":
 				results.append(mean(data[key]))
 			if op == "median":
-				results.append(median(sorted(data[key])))
-	for key in features:
-		print(key+": ",end='')
+				results.append(median(data[key]))
 		length = len(results)
 		for n in range(length):
 			print(results[n],end='')

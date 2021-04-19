@@ -1,5 +1,5 @@
 import sys
-from statistic import sum,mean,median
+from statistic import sum,mean, median, population_statistics
 from data import load_data, filter_by_feature, print_details
 
 # argv[0] - path/main.py
@@ -7,29 +7,30 @@ from data import load_data, filter_by_feature, print_details
 # argv[2] - arguments
 def main(argv):
 	features=['hum','t1','cnt','season','is_holiday']
-	data = load_data("london.csv", features)
+	data = load_data("london_sample.csv", features)
 	question1(data)
 	features=['t1','cnt','season','is_holiday']
-	data = load_data("london.csv", features)
+	data = load_data("london_sample.csv", features)
 	print("")
 	question2(data)	
 
 
 def question1(data):
 	print("Questin 1:")
+	
 	print("Summer:")
 	dict1,dict2=filter_by_feature(data, 'season', [1])
-	for key in ['hum', 't1', 'cnt']:
-		print(key,": "+str(sum(dict1[key]))+", "+str(mean(dict1[key]))+", "+str(median(sorted(dict1[key]))))
+	features = ['hum', 't1', 'cnt']
+	statistic_functions = ['sum', 'mean', 'median']
+	print_details(dict1, features, statistic_functions)
+	
 	print("Holiday:")
 	dict1,dict2=filter_by_feature(data, 'is_holiday', [1])
-	for key in ['hum', 't1', 'cnt']:
-		print(key,": "+str(sum(dict1[key]))+", "+str(mean(dict1[key]))+", "+str(median(sorted(dict1[key]))))
+	print_details(dict1, features, statistic_functions)
 	print("All:")
 	dict1 = data
-	for key in ['hum', 't1', 'cnt']:
-		print(key,": "+str(sum(dict1[key]))+", "+str(mean(dict1[key]))+", "+str(median(sorted(dict1[key]))))
-	
+	print_details(dict1, features, statistic_functions)
+
 
 def question2(data):
 	# season split
@@ -38,20 +39,14 @@ def question2(data):
 	Holiday, weekday = filter_by_feature(winter, 'is_holiday', [1])
 	holyday_smaller, holyday_bigger = split_by_value(Holiday,13)
 	weekday_smaller, weekday_bigger = split_by_value(weekday,13)
-
-	features = ['cnt']
 	functions = ['mean','median']
 	print("If t1<=13.0, then:")
-	print("Winter holiday records:")
-	print_details(holyday_smaller,features,functions)
-	print("Winter weekday records:")
-	print_details(weekday_smaller,features,functions)
+	population_statistics("Winter holiday records:",holyday_smaller,'t1',['cnt'],13,False,functions)
+	population_statistics("Winter weekday records:",weekday_smaller,'t1',['cnt'],13,False,functions)
 	print("If t1>13.0, then:")
-	print("Winter holiday records:")
-	print_details(holyday_bigger,features,functions)
-	print("Winter weekday records:")
-	print_details(weekday_bigger,features,functions)
-
+	description = "Winter holiday records:" 
+	population_statistics("Winter holiday records:",holyday_bigger,'t1',['cnt'],13,False,functions)
+	population_statistics("Winter weekday records:",weekday_bigger,'t1',['cnt'],13,False,functions)
 
 
 def split_by_value(data, value):
