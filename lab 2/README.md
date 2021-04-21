@@ -1,6 +1,8 @@
 # lab 2
+Lab 2 - Basic python and Data Analyse.
 
-lab2
+## ToDo
+does import sqrt is permitted?
 
 ## status
-start
+lab 2 is ready for submission.
