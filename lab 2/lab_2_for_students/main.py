@@ -65,7 +65,7 @@ def calculate_correlation_of_all_lists(data):
     :param data: dictionary of headers and list values
     :return: returns list of all the pairs and their correlations
     """
-    data_header, data_values, correlations = [], [], []
+    data_header, data_values, correlations = [], [], []  # TODO iterate
     for feature_name, list_of_values in sorted(data.items()):
         data_header.append(feature_name)
         data_values.append(list_of_values)
