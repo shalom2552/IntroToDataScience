@@ -3,10 +3,12 @@ import numpy as np
 import random as r
 import sys
 
+
 class bcolor:
 	OKGREEN = '\033[92m'
 	WARNING = '\033[93m'
 	ENDC = '\033[0m'
+
 
 def main(argv):
 	n = int(argv[1])
@@ -47,6 +49,7 @@ def corr(x, y, n):
 		else:
 			printfail()
 		printYE(corrs, corrnp[1][0])
+
 
 def printfail():
 	print(bcolor.WARNING + "\tFAIL!" + bcolor.ENDC)
