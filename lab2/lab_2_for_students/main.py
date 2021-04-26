@@ -29,7 +29,8 @@ def load_data(path):
 
 
 def run_analysis():
-    file_path = './winequality.csv'
+    #file_path = './winequality.csv'
+    file_path = './winequality_2.csv'
     data = load_data(file_path)
 
     # first way of printing. Everything casted to string, and spaces put automatically between passed values.
@@ -46,7 +47,6 @@ def run_analysis():
     correlations = calculate_correlation_of_all_lists(data)
     max_correlation = max_pair(correlations)
     min_correlation = min_pair(correlations)
-    print(max_correlation)
     strongest_pair = max_correlation[0]
     high_correlation = max_correlation[1]
     print('The strongest linear relationship is between: "{}","{}". '
@@ -102,7 +102,7 @@ def min_pair(nested_list):
     for elem in nested_list:
         if abs(elem[1]) < abs(minimum[1]):
             minimum = elem
-    return minimum
+    return [minimum[0], abs(minimum[1])]
 
 
 if __name__ == '__main__':

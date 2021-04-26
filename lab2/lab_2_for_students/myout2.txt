@@ -1,0 +1,15 @@
+Number of features: 12
+"alcohol". Mean: 10.04, Median: 9.80, Std: 1.1222
+"chlorides". Mean: 0.05, Median: 0.05, Std: 0.0218
+"citric acid". Mean: 0.35, Median: 0.34, Std: 0.1244
+"density". Mean: 0.99, Median: 0.99, Std: 0.0028
+"fixed acidity". Mean: 7.00, Median: 7.00, Std: 0.6709
+"free sulfur dioxide". Mean: 37.16, Median: 34.00, Std: 15.7663
+"pH". Mean: 3.20, Median: 3.20, Std: 0.1406
+"quality". Mean: 5.88, Median: 6.00, Std: 0.8173
+"residual sugar". Mean: 6.43, Median: 4.60, Std: 5.6129
+"sulphates". Mean: 0.47, Median: 0.46, Std: 0.0931
+"total sulfur dioxide". Mean: 143.00, Median: 147.00, Std: 42.2018
+"volatile acidity". Mean: 0.28, Median: 0.25, Std: 0.1055
+The strongest linear relationship is between: "density","residual sugar". The value is: 0.9081
+The weakest linear relationship is between: "citric acid","total sulfur dioxide". The value is: 0.0039
