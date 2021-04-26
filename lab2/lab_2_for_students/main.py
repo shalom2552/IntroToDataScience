@@ -102,7 +102,7 @@ def min_pair(nested_list):
     for elem in nested_list:
         if abs(elem[1]) < abs(minimum[1]):
             minimum = elem
-    return [minimum[0], abs(minimum[1])]
+    return minimum
 
 
 if __name__ == '__main__':
