@@ -1,5 +1,11 @@
 from statistics import mean, median, variance, correlation
 import csv
+import sys
+
+
+def main(argv):
+    file_path = argv[1]
+    run_analysis(file_path)
 
 
 def load_data(path):
@@ -28,9 +34,7 @@ def load_data(path):
     return data
 
 
-def run_analysis():
-    #file_path = './winequality.csv'
-    file_path = './winequality_2.csv'
+def run_analysis(file_path):
     data = load_data(file_path)
 
     # first way of printing. Everything casted to string, and spaces put automatically between passed values.
@@ -106,4 +110,4 @@ def min_pair(nested_list):
 
 
 if __name__ == '__main__':
-    run_analysis()
+    main(sys.argv)
