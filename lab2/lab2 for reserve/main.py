@@ -4,7 +4,8 @@ import sys
 
 
 def main(argv):
-    file_path = argv[1]
+    #file_path = argv[1]
+    file_path = "winequality.csv"
     run_analysis(file_path)
 
 
