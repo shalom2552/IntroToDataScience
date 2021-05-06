@@ -6,9 +6,9 @@ We will present in this exercise two questions.
 	submition date: 12.5.21
 
 ## Question 1
-	In this question we will be interested in the group of districts D. <br>
-	These are the districts whose name begins with S or L. <br>
-	In this question we calculates the mean and median for those districts with the given features below. <br>
+	In this question we will be interested in the group of districts D. 
+	These are the districts whose name begins with S or L.
+	In this question we calculates the mean and median for those districts with the given features below.
 
 ## Question 2
 	In this question we will help the Italian Corona Cabinet decide whether to impose a curfew on Italian
