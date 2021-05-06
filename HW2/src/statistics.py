@@ -11,4 +11,4 @@ def median(values):
 	if (length % 2) == 0:
 		return (float(values[(length//2) - 1])+float(values[(length//2)]))/2
 	else:
-		return float(values[length//2])
+		return values[length//2]

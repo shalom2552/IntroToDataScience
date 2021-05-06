@@ -4,3 +4,4 @@ In this home exercise we focus on analyzing the results of the Corona virus indi
 
 ## status
 in working
+data file - ready
