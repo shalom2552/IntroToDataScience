@@ -48,3 +48,4 @@ class KMeans:
         print('Average distance to centroid: {:.2f}'.format(total_loss/total_points))
         print('Sum of squared errors: {:.2f}. Mean squared error(MSE): {:.2f}'.
               format(total_SSE, total_SSE/total_points))
+        print("Sum of L1 distances: {:.2f}".format(total_loss))

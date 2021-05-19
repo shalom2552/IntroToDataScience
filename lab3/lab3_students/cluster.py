@@ -23,15 +23,15 @@ class Cluster:
 
         # We set new center as vector of zeroes. Length of the vector depends on number of coordinates
         number_of_coordinates = len(self._points[0].coordinates)
-        new_coordinates = [0] * number_of_coordinates
+        new_coordinates = [[]] * number_of_coordinates
 
         # Now go through each point and add it's coordinates to the center
         for point in self._points:
             for coordinate_index, coordinate_value in enumerate(point.coordinates):
-                new_coordinates[coordinate_index] += coordinate_value
+                new_coordinates[coordinate_index].append(coordinate_value)
 
         # Divide to find mean
-        new_coordinates = [x / len(self._points) for x in new_coordinates]
+        new_coordinates = [self.median(x) for x in new_coordinates]
         self._centroid.set_coordinates(new_coordinates)
 
         is_changed = (old_centroid != tuple(self._centroid.coordinates))
@@ -70,6 +70,17 @@ class Cluster:
     def compute_SSE(self):
         errors = [self._centroid.distance_to(point.coordinates)**2 for point in self._points]
         return sum(errors)
+
+    def median(self, list_of_values):
+        sorted_list = sorted(list_of_values)
+        center_index = int(len(list_of_values) / 2)  # round to int required because division always produces float
+        # Median value depends on length on list
+        if len(list_of_values) % 2 == 0:
+            result = (sorted_list[center_index] + sorted_list[center_index - 1]) / 2
+        else:
+            # Now we need only 1 index for exact value
+            result = sorted_list[center_index]
+        return result
 
     @property
     def centroid(self):
