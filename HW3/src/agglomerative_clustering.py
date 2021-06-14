@@ -1,10 +1,6 @@
 from collections import OrderedDict
 from cluster import Cluster
 
-# TODO ???
-from sample import Sample
-# TODO ???
-
 
 class AgglomerativeClustering:
     def __init__(self, link, samples):
@@ -13,7 +9,24 @@ class AgglomerativeClustering:
         for sample in samples:
             clusters.append(Cluster(sample.s_id, [sample]))
         self.clusters = clusters
+        #print("**Debug** clusters:", self.clusters) TODO
         self.samples = samples
+        pass
+
+    def run(self, max_clusters):
+        # run algorithm
+        # TODO cluster have to be sorted
+        print("single link:")
+        i = 0
+        for cluster in self.clusters:
+            #silhouette = self.compute_silhouette()
+            silhouette = 0  # TODO DEBUG
+            cluster.print_details(silhouette)
+            i += 1
+            print("**DEBUG** run round:",i)
+            if i == max_clusters:
+                break
+        pass
 
     """
     dictionary where all keys are identifiers of all data samples
@@ -78,13 +91,14 @@ class AgglomerativeClustering:
                     FP += 1
                 elif cluster_1 != cluster_2 and label_1 == label_2:
                     FN += 1
-        return (TP + TN)/(TP + TN + FP + FN)
+        return (TP + TN)/(TP + TN + FP + FN) if (TP + TN + FP + FN) != 0 else 0
 
     def get_cluster(self, x):
         for cluster in self.clusters:
             for sample in cluster.samples:
                 if sample.s_id == x.s_id:
                     return cluster.c_id
+        pass
 
     @staticmethod
     def in_function(self, x):
@@ -97,6 +111,7 @@ class AgglomerativeClustering:
                 return sum_dists/(len(cluster.samples) - 1)
             else:
                 raise
+        pass
 
     @staticmethod
     def out_function(self, x):
@@ -104,7 +119,7 @@ class AgglomerativeClustering:
         for cluster in self.clusters:
             if x not in cluster.samples:
                 sum_dist = 0
-                for point in cluster:
+                for point in cluster.samples:
                     sum_dist += x.compute_euclidean_distance(point)
                 cluster_dists.append(sum_dist/len(cluster.samples))
         return min(cluster_dists)

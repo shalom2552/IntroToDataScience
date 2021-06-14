@@ -1,3 +1,5 @@
+
+
 class Cluster:
     def __init__(self, c_id, samples):
         self.c_id = c_id
@@ -25,7 +27,8 @@ class Cluster:
             ids.append(sample.s_id)
         ids.sort()
         cluster_id = ids[0]
-        dominant_label = self.dominant_label()
+        #dominant_label = self.dominant_label()
+        dominant_label = 0  # TODO DEBUG
         print(f"Cluster {cluster_id}: {ids}, dominant label = {dominant_label}, silhouette = {silhouette:.3f}")
 
     """
