@@ -29,3 +29,52 @@ class ZNormalizer:
                                for i in range(len(p.coordinates))]
             new.append(Point(p.name, new_coordinates, p.label))
         return new
+
+
+class SumNormalizer:
+    def __init__(self):
+        self.sums = []
+
+    def fit(self, points):
+        for i in range(len(points[0].coordinates)):
+            sum_ = 0
+            for point in points:
+                sum_ += abs(point.coordinates[i])
+            self.sums.append(sum_)
+
+    def transform(self, points):
+        transformed_points = []
+        for point in points:
+            new_coordinate = []
+            for i in range(len(point.coordinates)):
+                new_coordinate.append(point.coordinates[i]/self.sums[i])
+            transformed_points.append(Point(point.name, new_coordinate, point.label))
+        return transformed_points
+
+
+class MinMaxNormalizer:
+    def __init__(self):
+        self.min = []
+        self.max = []
+
+    def fit(self, points):
+        for i in range(len(points[0].coordinates)):
+            min_ = points[0].coordinates[i]
+            max_ = points[0].coordinates[i]
+            for point in points:
+                if point.coordinates[i] >= max_:
+                    max_ = point.coordinates[i]
+                if point.coordinates[i] <= min_:
+                    min_ = point.coordinates[i]
+            self.min.append(min_)
+            self.max.append(max_)
+
+    def transform(self, points):
+        transformed_points = []
+        for point in points:
+            new_coordinate = []
+            for i in range(len(point.coordinates)):
+                new_coordinate.append((point.coordinates[i] - self.min[i]) / (self.max[i] - self.min[i]))
+            transformed_points.append(Point(point.name, new_coordinate, point.label))
+        return transformed_points
+
