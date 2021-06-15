@@ -9,10 +9,9 @@ class Cluster:
     merge the clusters
     :param other: cluster to be merge to 
     """
-    def merge(self, other):  # TODO fully implement!!
+    def merge(self, other):  # TODO implement!!
         self.c_id = min(self.c_id, other.c_id)
-        # TODO add other points into self points
-        del other  # TODO move out of function to not be referenced to none
+        self.samples = self.samples + other.samples
         # TODO s_id of samples as to be sorted in ascending order
 
     """
@@ -27,8 +26,7 @@ class Cluster:
             ids.append(sample.s_id)
         ids.sort()
         cluster_id = ids[0]
-        #dominant_label = self.dominant_label()
-        dominant_label = 0  # TODO DEBUG
+        dominant_label = self.dominant_label()
         print(f"Cluster {cluster_id}: {ids}, dominant label = {dominant_label}, silhouette = {silhouette:.3f}")
 
     """
@@ -37,7 +35,12 @@ class Cluster:
     """
     def dominant_label(self):
         histogram = {}
+        labels = ['B-CELL_ALL', 'B-CELL_ALL_TCF3-PBX1', 'B-CELL_ALL_HYPERDIP', 'B-CELL_ALL_HYPO',
+                  'B-CELL_ALL_MLL', 'B-CELL_ALL_T-ALL', 'B-CELL_ALL_ETV6-RUNX1']
+        for label in labels:
+            histogram[label] = 0
         for sample in self.samples:
+            print(str(sample.label))
             histogram[sample.label] += 1
         max_label_value = -1
         max_label = None

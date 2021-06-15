@@ -10,11 +10,12 @@ def main(argv):
     path = argv[1]
     samples = Data(path).create_samples()
 
-    link = Link()
+    link = SingleLink()
+    # print(samples[1].s_id)  TODO DEBUG
 
     agglomerative = AgglomerativeClustering(link, samples)
     print("__DEBUG__ Agglomerative init!")  # TODO debug
-    agglomerative.run(7)
+    agglomerative.run(40)
 
 
 if __name__ == '__main__':

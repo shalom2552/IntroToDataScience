@@ -9,31 +9,59 @@ class AgglomerativeClustering:
         for sample in samples:
             clusters.append(Cluster(sample.s_id, [sample]))
         self.clusters = clusters
-        #print("**Debug** clusters:", self.clusters) TODO
         self.samples = samples
         pass
 
     def run(self, max_clusters):
+        # 1. compute similarity information between every pair of objects in the data set.
+        # 2. merge cluster by link method
+        # 3. Determining where to cut the hierarchical tree into clusters. This creates a partition of the data.
         # run algorithm
-        # TODO cluster have to be sorted
-        print("single link:")
-        i = 0
+        cluster_count = len(self.clusters)
+        tuple_list = []
+
+        # as long as not reached max_cluster count, keep merging
+        count = 0  # TODO DEBUG
+        while cluster_count > max_clusters:
+            # go over and find the closest cluster by link method
+            count += 1  # TODO DEBUG
+            print("**DEBUG** iteration of run in agg.. :", count)  # TODO DEBUG
+            print("  cluster_count:", cluster_count)  # TODO DEBUG
+
+            cluster_count = len(self.clusters)
+            for i in range(cluster_count):
+                for j in range(cluster_count):
+                    if i == j:
+                        continue
+                    dists = self.link.compute(self.clusters[i], self.clusters[j])
+                    tuple_list.append([i, j, dists])
+
+            max_dist = [-1, -1, 0]
+            for tuple_element in tuple_list:
+                if max_dist[2] < tuple_element[2]:
+                    max_dist = [tuple_element[0], tuple_element[1], tuple_element[2]]
+                    print("  max_dist:", max_dist)  # TODO DEBUG
+
+            # we found the closest cluster, now we need to merge them
+            print("**DEBUG**  max dist:", max_dist)  # TODO DEBUG
+            self.clusters[max_dist[0]].merge(self.clusters[max_dist[1]])
+            # after we merged the second cluster into the first one, we delete the old merged one
+            del self.clusters[max_dist[1]]
+
+        # now we have 7 clusters in the list
+        assert len(self.clusters) != max_clusters
+        self.clusters.sort()
+        silhouette = self.compute_summery_silhouette()
         for cluster in self.clusters:
-            #silhouette = self.compute_silhouette()
-            silhouette = 0  # TODO DEBUG
-            cluster.print_details(silhouette)
-            i += 1
-            print("**DEBUG** run round:",i)
-            if i == max_clusters:
-                break
-        pass
+            cluster_silhouette = silhouette[cluster.c_id]
+            cluster.print_details(cluster_silhouette)
 
     """
     dictionary where all keys are identifiers of all data samples
     and the compatible value is the silhouette measure
     """
     def compute_silhouette(self):
-        results = OrderedDict()
+        results = {}
         for cluster in self.clusters:
             for x in cluster.samples:
                 if len(cluster.samples) <= 1:
@@ -42,7 +70,7 @@ class AgglomerativeClustering:
                     in_x = self.in_function(self, x)
                     out_x = self.out_function(self, x)
                     x_silhouette = (out_x - in_x)/max(out_x, in_x)
-                results.update({x.s_id, x_silhouette})
+                results[x.s_id] = x_silhouette  # .update({x.s_id, x_silhouette})
         return results
 
     """
@@ -57,7 +85,7 @@ class AgglomerativeClustering:
         silhouette = self.compute_silhouette()
         for cluster in self.clusters:
             summery_silhouette[cluster.c_id] = 0
-        for s_id, x_silhouette in zip(silhouette):
+        for s_id, x_silhouette in silhouette.items():
             total_silhouette += x_silhouette
             found = False
             for cluster in self.clusters:
@@ -81,6 +109,8 @@ class AgglomerativeClustering:
 
         for sample_1 in self.samples:
             for sample_2 in self.samples:
+                if sample_1.s_id == sample_2.s_id:
+                    continue
                 cluster_1, cluster_2 = self.get_cluster(sample_1), self.get_cluster(sample_2)
                 label_1, label_2 = sample_1.label, sample_2.label
                 if cluster_1 == cluster_2 and label_1 == label_2:
@@ -91,7 +121,7 @@ class AgglomerativeClustering:
                     FP += 1
                 elif cluster_1 != cluster_2 and label_1 == label_2:
                     FN += 1
-        return (TP + TN)/(TP + TN + FP + FN) if (TP + TN + FP + FN) != 0 else 0
+        return (TP + TN)/(TP + TN + FP + FN)  # if (TP + TN + FP + FN) != 0 else 0
 
     def get_cluster(self, x):
         for cluster in self.clusters:
