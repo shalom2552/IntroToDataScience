@@ -6,6 +6,10 @@ class Sample:
         self.label = label
         self.genes = genes
 
+    """
+    Calculates Euclidean distance between this point and the other point.
+    :returns Euclidean distance
+    """
     def compute_euclidean_distance(self, other):
         sum_sqr_dis = 0
         for i in range(len(self.genes)):

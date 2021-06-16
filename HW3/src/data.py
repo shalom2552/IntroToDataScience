@@ -3,14 +3,16 @@ from sample import Sample
 
 
 class Data:
-    # path - full path to the dataset
     def __init__(self, path):
         df = pd.read_csv(path)
         self.data = df.to_dict(orient="list")
 
+    """
+    Accepts the data as a dictionary and turns it into sample-type objects
+    :returns list of all samples
+    """
     def create_samples(self):
         samples = []
-
         samples_id = self.data['samples']
         samples_type = self.data['type']
         samples_genes = []

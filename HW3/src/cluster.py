@@ -6,7 +6,7 @@ class Cluster:
         self.samples = samples
 
     """
-    merge the clusters
+    Given a cluster the function will merge it into the current cluster.
     :param other: cluster to be merge to 
     """
     def merge(self, other):  # TODO implement!!
@@ -39,7 +39,6 @@ class Cluster:
         for label in labels:
             histogram[label] = 0
         for sample in self.samples:
-            print(str(sample.label))
             histogram[sample.label] += 1
         max_label_value = -1
         max_label = None

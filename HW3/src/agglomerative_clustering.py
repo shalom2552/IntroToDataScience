@@ -12,17 +12,17 @@ class AgglomerativeClustering:
         self.samples = samples
         pass
 
+    """
+    The main function that runs the algorithm.
+    The function goes through all the clusters and merges between clusters until a maximum of clusters is obtained.
+    Then prints the results.
+    :param max_clusters : Number of clusters until the merger stops
+    """
     def run(self, max_clusters):
-        # 1. compute similarity information between every pair of objects in the data set.
-        # 2. merge cluster by link method
-        # 3. Determining where to cut the hierarchical tree into clusters. This creates a partition of the data.
-        # run algorithm
-
         # as long as not reached max_cluster count, keep merging
         while len(self.clusters) > max_clusters:
             tuple_list = []
             cluster_count = len(self.clusters)
-            print("**DEBUG** cluster_count", cluster_count)
             for i in range(cluster_count):
                 for j in range(cluster_count):
                     if i == j:
@@ -40,12 +40,13 @@ class AgglomerativeClustering:
             del self.clusters[min_dist[1]]
 
         # now we have 7 clusters in the list
-        #assert len(self.clusters) != max_clusters
-        #self.clusters.sort()
         silhouette = self.compute_summery_silhouette()
         for cluster in self.clusters:
             cluster_silhouette = silhouette[cluster.c_id]
             cluster.print_details(cluster_silhouette)
+        RI = self.compute_rand_index()
+        print("whole data: silhouette = {:.3f}, RI = {:.3f}".format(silhouette[0], RI))
+        pass
 
     """
     dictionary where all keys are identifiers of all data samples
@@ -91,13 +92,16 @@ class AgglomerativeClustering:
             len_cluster = len(cluster.samples)
             total_len += len_cluster
             summery_silhouette[cluster.c_id] /= len_cluster
-        # sample silhouette
+        # whole sample silhouette
         summery_silhouette[0] = total_silhouette/total_len
         return summery_silhouette
 
+    """
+    This method calculates the value of the Rand Index
+    :return Accuracy index
+    """
     def compute_rand_index(self):
         TP, TN, FP, FN = 0, 0, 0, 0
-
         for sample_1 in self.samples:
             for sample_2 in self.samples:
                 if sample_1.s_id == sample_2.s_id:
@@ -112,8 +116,13 @@ class AgglomerativeClustering:
                     FP += 1
                 elif cluster_1 != cluster_2 and label_1 == label_2:
                     FN += 1
-        return (TP + TN)/(TP + TN + FP + FN)  # if (TP + TN + FP + FN) != 0 else 0
+        rand_index = (TP + TN)/(TP + TN + FP + FN) if (TP + TN + FP + FN) != 0 else 0
+        return rand_index
 
+    """
+    Given an example the function goes through all the clusters and returns the cluster containing the same sample.
+    :return id of the cluster
+    """
     def get_cluster(self, x):
         for cluster in self.clusters:
             for sample in cluster.samples:
