@@ -45,7 +45,7 @@ class AgglomerativeClustering:
             cluster_silhouette = silhouette[cluster.c_id]
             cluster.print_details(cluster_silhouette)
         RI = self.compute_rand_index()
-        print("whole data: silhouette = {:.3f}, RI = {:.3f}".format(silhouette[0], RI))
+        print("whole data: silhouette = {:.3g}, RI = {:.3g}".format(silhouette[0], RI))
         pass
 
     """

@@ -26,7 +26,7 @@ class Cluster:
         ids.sort()
         cluster_id = ids[0]
         dominant_label = self.dominant_label()
-        print(f"Cluster {cluster_id}: {ids}, dominant label = {dominant_label}, silhouette = {silhouette:.3f}")
+        print(f"Cluster {cluster_id}: {ids}, dominant label = {dominant_label}, silhouette = {silhouette:.3g}")
 
     """
     for this cluster this function go over all sample and calculate the label with the most occurrences.
