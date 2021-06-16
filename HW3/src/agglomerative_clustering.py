@@ -17,40 +17,31 @@ class AgglomerativeClustering:
         # 2. merge cluster by link method
         # 3. Determining where to cut the hierarchical tree into clusters. This creates a partition of the data.
         # run algorithm
-        cluster_count = len(self.clusters)
-        tuple_list = []
 
         # as long as not reached max_cluster count, keep merging
-        count = 0  # TODO DEBUG
-        while cluster_count > max_clusters:
-            # go over and find the closest cluster by link method
-            count += 1  # TODO DEBUG
-            print("**DEBUG** iteration of run in agg.. :", count)  # TODO DEBUG
-            print("  cluster_count:", cluster_count)  # TODO DEBUG
-
+        while len(self.clusters) > max_clusters:
+            tuple_list = []
             cluster_count = len(self.clusters)
+            print("**DEBUG** cluster_count", cluster_count)
             for i in range(cluster_count):
                 for j in range(cluster_count):
                     if i == j:
                         continue
-                    dists = self.link.compute(self.clusters[i], self.clusters[j])
-                    tuple_list.append([i, j, dists])
-
-            max_dist = [-1, -1, 0]
+                    dist = self.link.compute(self.clusters[i], self.clusters[j])
+                    tuple_list.append([i, j, dist])
+            min_dist = [tuple_list[0][0], tuple_list[0][1], tuple_list[0][2]]  # [i, j, dist]
             for tuple_element in tuple_list:
-                if max_dist[2] < tuple_element[2]:
-                    max_dist = [tuple_element[0], tuple_element[1], tuple_element[2]]
-                    print("  max_dist:", max_dist)  # TODO DEBUG
+                if min_dist[2] > tuple_element[2]:
+                    min_dist = [tuple_element[0], tuple_element[1], tuple_element[2]]
 
             # we found the closest cluster, now we need to merge them
-            print("**DEBUG**  max dist:", max_dist)  # TODO DEBUG
-            self.clusters[max_dist[0]].merge(self.clusters[max_dist[1]])
+            self.clusters[min_dist[0]].merge(self.clusters[min_dist[1]])
             # after we merged the second cluster into the first one, we delete the old merged one
-            del self.clusters[max_dist[1]]
+            del self.clusters[min_dist[1]]
 
         # now we have 7 clusters in the list
-        assert len(self.clusters) != max_clusters
-        self.clusters.sort()
+        #assert len(self.clusters) != max_clusters
+        #self.clusters.sort()
         silhouette = self.compute_summery_silhouette()
         for cluster in self.clusters:
             cluster_silhouette = silhouette[cluster.c_id]
@@ -133,14 +124,12 @@ class AgglomerativeClustering:
     @staticmethod
     def in_function(self, x):
         for cluster in self.clusters:
-            if x in cluster:
+            if x in cluster.samples:
                 sum_dists = 0
-                for point in cluster:
+                for point in cluster.samples:
                     if point.s_id != x.s_id:
                         sum_dists += x.compute_euclidean_distance(point)
                 return sum_dists/(len(cluster.samples) - 1)
-            else:
-                raise
         pass
 
     @staticmethod

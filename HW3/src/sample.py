@@ -1,4 +1,3 @@
-import numpy as np
 
 
 class Sample:
@@ -11,4 +10,4 @@ class Sample:
         sum_sqr_dis = 0
         for i in range(len(self.genes)):
             sum_sqr_dis += (self.genes[i] - other.genes[i])**2
-        return np.sqrt(sum_sqr_dis)
+        return sum_sqr_dis**(1/2)

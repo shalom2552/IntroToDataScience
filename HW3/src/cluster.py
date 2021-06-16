@@ -12,7 +12,6 @@ class Cluster:
     def merge(self, other):  # TODO implement!!
         self.c_id = min(self.c_id, other.c_id)
         self.samples = self.samples + other.samples
-        # TODO s_id of samples as to be sorted in ascending order
 
     """
     print cluster data:

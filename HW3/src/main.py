@@ -15,7 +15,7 @@ def main(argv):
 
     agglomerative = AgglomerativeClustering(link, samples)
     print("__DEBUG__ Agglomerative init!")  # TODO debug
-    agglomerative.run(40)
+    agglomerative.run(49)
 
 
 if __name__ == '__main__':
